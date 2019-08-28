@@ -21,12 +21,35 @@ BeutifulSoup
 
 A step by step series of examples that tell you how to get a development env running
 
-Clone the repository: 
+Clone the repository:
 
 ```
 git clone https://www.github.com/xarielx/education4less.git
 ```
-
+Install Python 3.7.+
+```
+https://python.org
+```
+Install pipenv
+```
+pip install pipenv
+```
+Start pipenv with required modules to be installed (i.e. Django, autopep8, etc...)
+```
+pipenv intall -r requirements.txt
+```
+Start pipenv virtual environment
+```
+pipenv shell
+```
+Start server - Change directory to education4less
+```
+cd education4less
+```
+Start server 
+```
+python manage.py runserver
+```
 More steps coming soon
 
 ```
