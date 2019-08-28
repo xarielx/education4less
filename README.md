@@ -62,9 +62,9 @@ To deploy this system, we will use Heroku as our web server host, and AWS for ou
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Django](https://www.djangoproject.com/) - The web framework used
+* [SQLLite](https://www.sqlite.org/index.html) - Database Management System
+
 
 ## Contributing
 
