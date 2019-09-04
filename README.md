@@ -26,6 +26,14 @@ Clone the repository:
 ```
 git clone https://www.github.com/xarielx/education4less.git
 ```
+
+Install Pre-hooks
+
+```
+cd .githooks
+chmod +x pre-push
+cd ..
+```
 Install Python 3.7.+
 ```
 https://python.org
