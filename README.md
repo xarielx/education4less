@@ -1,4 +1,4 @@
-# Education 4 Less
+# Education 4 Less!
 
 This is a search engine to match user profiles to appropiate scholarships, without 3rd party interference. 
 
