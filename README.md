@@ -30,9 +30,10 @@ git clone https://www.github.com/xarielx/education4less.git
 Install Pre-hooks
 
 ```
-cd .githooks
-chmod +x pre-push
-cd ..
+* Steps to install, from the root directory of your repo...
+* 1. Copy the files `.githooks/pre-push` & `.githooks/stop.txt` into your repo at `.git/hooks/`
+* 2. Set executable permissions, run `chmod +x .git/hooks/pre-push`
+* 3. Or, use `rake hooks:pre_push` to install
 ```
 Install Python 3.7.+
 ```
