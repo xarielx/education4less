@@ -45,7 +45,7 @@ pip install pipenv
 ```
 Start pipenv with required modules to be installed (i.e. Django, autopep8, etc...)
 ```
-pipenv intall -r requirements.txt
+pipenv install -r requirements.txt
 ```
 Start pipenv virtual environment
 ```
