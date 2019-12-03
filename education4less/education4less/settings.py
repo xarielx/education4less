@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'scholarships.apps.ScholarshipsConfig',
+    'scholar.apps.ScholarConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
