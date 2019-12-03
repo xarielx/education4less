@@ -1,4 +1,6 @@
 {% load static %}
+{% load widget_tweaks %}
+
 <!doctype html>
 <html lang="en">
 
@@ -22,6 +24,7 @@
 
 
 <body>
+
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
@@ -34,6 +37,7 @@
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{% url 'scholar-home' %}">Home</a>
                         <a class="nav-item nav-link" href="{% url 'scholar-about' %}">About</a>
+                        <a class="nav-item nav-link" href="{% url 'scholar-search' %}">Search</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
@@ -67,7 +71,7 @@
                             <li class="list-group-item list-group-item-light">etc</li>
                         </ul>
                     </p>
-                </div>
+            </div>
             </div>
         </div>
     </main>

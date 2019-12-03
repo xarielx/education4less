@@ -1,0 +1,95 @@
+{% extends "scholar/base.html" %}{% block content %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+<div class="container">
+ <form method="get">
+    <div class="well">
+      <h4 style="margin-top: 0">Filter</h4>
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          Scholarship Name: 
+          {% render_field filter.form.scholarship_name class="form-control" %}
+        </div><br>
+        <div class="form-group col-sm-4 col-md-3">
+          Description:
+          {% render_field filter.form.description class="form-control" %}
+        </div><br>
+        <div class="form-group col-sm-4 col-md-3">
+         Requirements:
+          {% render_field filter.form.requirements class="form-control" %}
+        </div>
+        <div class="form-group col-sm-8 col-md-6">
+          {{ filter.form.groups.label_tag }}
+          <div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+    </div>
+  </form>
+  </div>
+  <div class="container">
+  <div class="container">
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+   {% if scholars.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+    {% endif %}
+    <li class="page-item active">
+        <a class="page-link" href="#"> Page {{ scholars.number }} of {{ scholars.paginator.num_pages }}.<span class="sr-only">(current)</span></a>
+      </li>
+      {% if scholars.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ scholars.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li>
+      {% endif %}
+  </ul>
+</nav>
+</div>
+</div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Scholarship Name</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for sch in scholars %}
+      
+        <tr>
+          <td>
+          
+<div class="greetings">{% render_field sch.scholarship_name%}</div>
+</td>
+          <td><a href="{{ sch.scholarship_link }}" target="_blank"
+          >Apply</a
+        ></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No data</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="container">
+  <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+   {% if scholars.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+    {% endif %}
+    <li class="page-item active">
+        <a class="page-link" href="#"> Page {{ scholars.number }} of {{ scholars.paginator.num_pages }}.<span class="sr-only">(current)</span></a>
+      </li>
+      {% if scholars.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ scholars.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li>
+      {% endif %}
+  </ul>
+</nav>
+</div>
+{% endblock content%}

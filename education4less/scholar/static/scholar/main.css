@@ -87,3 +87,26 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+.overflow {
+  width: 10em;
+outline: 1px solid #000;
+margin: 0 0 2em 0;
+
+/**
+ * Required properties to achieve text-overflow
+ */
+    white-space: nowrap;
+  overflow: hidden;
+}
+body style {
+  display: block;
+  font: 14px monospace;
+  padding: 3px;
+  margin: 0 0 5px 0;
+}
+.greetings{
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
