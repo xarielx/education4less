@@ -54,6 +54,7 @@
       <tr>
         <th>Scholarship Name</th>
         <th>Link</th>
+        <th id="show">Description (On/Off)</td></th>
       </tr>
     </thead>
     <tbody>
@@ -67,7 +68,10 @@
           <td><a href="{{ sch.scholarship_link }}" target="_blank"
           >Apply</a
         ></td>
-        </tr>
+        <td>
+        <p class="hldr text-warning">Display</p>
+    <p style="display:none" class="desc">{{ sch.description }}</p>
+        </td></tr>
       {% empty %}
         <tr>
           <td colspan="5">No data</td>

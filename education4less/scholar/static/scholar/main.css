@@ -110,3 +110,22 @@ body style {
   overflow: hidden;
   text-overflow: ellipsis; 
 }
+
+.emailcontainer {
+  display:none;
+  color:rgb(17, 16, 16);
+  border:solid 1px #000000;
+  padding:10px;
+  padding-left:50px;
+  padding-right:50px
+}
+
+.button-text {
+  padding:0 25px;
+  line-height:56px;
+  letter-spacing:3px
+}
+
+.button-text.contactme {
+  font-weight:20px
+}
