@@ -6,6 +6,7 @@
       <th>Award Amount</th>
       <th>Link</th>
       <th>Description</th>
+      <th>Requirements</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,19 @@
         >
       </td>
       <td>{{ user.description }}</td>
+      <td>
+        <center><div id="menu">
+          <a
+            ><button id="btn-val">
+              Open
+            </button></a
+          ><br />
+          <div style="display: none">
+            <p>{{ user.requirements }}</p>
+          </div>
+        </div>
+        </center
+      </td>
     </tr>
     {% endfor %}
   </tbody>
