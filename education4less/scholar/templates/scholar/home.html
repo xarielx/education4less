@@ -37,21 +37,20 @@
     {% endfor %}
   </tbody>
 </table>
-<div class="pagination">
-  <span class="step-links">
-    {% if scholars.has_previous %}
-    <a href="?page=1">&laquo; first</a>
-    <a href="?page={{ scholars.previous_page_number }}">previous</a>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+   {% if scholars.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
     {% endif %}
-
-    <span class="current">
-      Page {{ scholars.number }} of {{ scholars.paginator.num_pages }}.
-    </span>
-
-    {% if scholars.has_next %}
-    <a href="?page={{ scholars.next_page_number }}">next</a>
-    <a href="?page={{ scholars.paginator.num_pages }}">last &raquo;</a>
-    {% endif %}
-  </span>
-</div>
+    <li class="page-item active">
+        <a class="page-link" href="#"> Page {{ scholars.number }} of {{ scholars.paginator.num_pages }}.<span class="sr-only">(current)</span></a>
+      </li>
+      {% if scholars.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ scholars.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li>
+      {% endif %}
+  </ul>
+</nav>
 {% endblock content%}
+

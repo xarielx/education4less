@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def home(request):
     scholar_list = Scholar.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(scholar_list, 10)
+    paginator = Paginator(scholar_list, 5)
     try:
         scholars = paginator.page(page)
     except PageNotAnInteger:
