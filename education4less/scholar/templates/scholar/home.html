@@ -1,0 +1,49 @@
+{% extends "scholar/base.html" %}{% block content %}
+<div class="container">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Scholarship Name</th>
+      <th>Award Amount</th>
+      <th>Link</th>
+      <th>Description</th>
+      <th  id="show">Requirements (On/Off)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in scholars %}
+    <tr>
+      <td>{{ user.scholarship_name }}</td>
+      <td>{{ user.award_amount }}</td>
+      <td>
+        <a href="{{ user.scholarship_link }}" target="_blank"
+          >{{ user.scholarship_name }}</a
+        >
+      </td>
+      <td>{{ user.description }}</td>
+      <td>
+       <p class="hldr text-warning">Display</p>
+    <p style="display:none" class="desc">{{ user.requirements }}</p>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+   {% if scholars.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+    {% endif %}
+    <li class="page-item active">
+        <a class="page-link" href="#"> Page {{ scholars.number }} of {{ scholars.paginator.num_pages }}.<span class="sr-only">(current)</span></a>
+      </li>
+      {% if scholars.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ scholars.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li>
+      {% endif %}
+  </ul>
+</nav>
+</div>
+{% endblock content%}
+

@@ -30,9 +30,10 @@ git clone https://www.github.com/xarielx/education4less.git
 Install Pre-hooks
 
 ```
-cd .githooks
-chmod +x pre-push
-cd ..
+* Steps to install, from the root directory of your repo...
+* 1. Copy the files `.githooks/pre-push` & `.githooks/stop.txt` into your repo at `.git/hooks/`
+* 2. Set executable permissions, run `chmod +x .git/hooks/pre-push`
+* 3. Or, use `rake hooks:pre_push` to install
 ```
 Install Python 3.7.+
 ```
@@ -44,7 +45,7 @@ pip install pipenv
 ```
 Start pipenv with required modules to be installed (i.e. Django, autopep8, etc...)
 ```
-pipenv intall -r requirements.txt
+pipenv install -r requirements.txt
 ```
 Start pipenv virtual environment
 ```
