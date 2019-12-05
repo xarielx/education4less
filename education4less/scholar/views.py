@@ -1,6 +1,8 @@
 # Create your views here.
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 from .models import Scholar
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -47,19 +49,39 @@ def search(request):
     # user_list = Scholar.objects.all()
     # user_filter = ScholarFilter(request.GET, queryset=user_list)
     # return render(request, 'scholar/user_search.html', {'filter': user_filter})
+    paginate_by = 5
     filtered_qs = Scholar.objects.all()
     user_filter = ScholarFilter(request.GET, queryset=filtered_qs)
-    paginator = Paginator(user_filter.qs, 10)
+    paginator = Paginator(user_filter.qs, 5)
+
+    ctx = {}
+    url_parameter = request.GET.get("q")
+
+    if url_parameter:
+        artists = Scholar.objects.filter(
+            scholarship_name__icontains=url_parameter)
+    else:
+        artists = Scholar.objects.all()
+
+    if request.is_ajax():
+        html = render_to_string(
+            template_name="artists-results-partial.html",
+            context={"artists": artists}
+        )
+
+        data_dict = {"html_from_view": html}
+
+        return JsonResponse(data=data_dict, safe=False)
 
     page = request.GET.get('page')
     try:
-            scholars = paginator.page(page)
+        scholars = paginator.page(page)
     except PageNotAnInteger:
-            scholars = paginator.page(1)
+        scholars = paginator.page(1)
     except EmptyPage:
-            scholars = paginator.page(paginator.num_pages)
+        scholars = paginator.page(paginator.num_pages)
 
     return render(
-            request, 
-            'scholar/user_search.html', 
-            {'filter': user_filter, 'scholars': scholars})
+        request,
+        'scholar/user_search.html',
+        {'filter': user_filter, 'scholars': scholars, "artists": artists})

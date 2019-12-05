@@ -1,7 +1,10 @@
 {% extends "scholar/base.html" %}{% block content %}
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
-<div class="container">
+
+<!-- Search Fields  -->
+<div class="row" id="searchFields">
+    <div class="col">
  <form method="get">
     <div class="well">
       <h4 style="margin-top: 0">Filter</h4>
@@ -24,76 +27,140 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary text-center">
         <span class="glyphicon glyphicon-search"></span> Search
       </button>
     </div>
   </form>
   </div>
-  <div class="container">
-  <div class="container">
+</div>
+  <br>
+
+ <!-- TEST AJAX Button Fields  -->
+
+ <h3>Artists</h3>
+ <div class="row">
+   <div class="col-6 align-left">
+     <form class="form-inline">
+     <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
+     <input id="user-input" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+     </form>
+   </div>
+ 
+   <div id="replaceable-content" class="col-6">
+     {% include 'artists-results-partial.html' %}
+   </div>
+ </div>
+ <!-- RTESTds  -->
+
+
+ <!-- Search Button Fields  -->
+  <div class="row text-center" id="pageNav">
+      <div class="col">
+
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
    {% if scholars.has_previous %}
-    <li class="page-item"><a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+   {% if 'scholarship_name' not in request.get_full_path %}
+   <li class="page-item"><a class="page-link" href="?page=1">&laquo;First</a></li>
+   <li class="page-item"><a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a></li>
+   {% endif %}
+   {% if 'scholarship_name' in request.get_full_path %}
+    <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page=1">&laquo;First</a></li>
+    <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.previous_page_number }}">Previous</a></li>
+    {% endif %}
     {% endif %}
     <li class="page-item active">
         <a class="page-link" href="#"> Page {{ scholars.number }} of {{ scholars.paginator.num_pages }}.<span class="sr-only">(current)</span></a>
       </li>
       {% if scholars.has_next %}
+      <!-- <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li> -->
+      {% if 'scholarship_name' not in request.get_full_path %}
       <li class="page-item"><a class="page-link" href="?page={{ scholars.next_page_number }}">Next</a></li>
       <li class="page-item"><a class="page-link" href="?page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li>
+   {% endif %}
+   {% if 'scholarship_name' in request.get_full_path %}
+   <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li>
+    {% endif %}
       {% endif %}
   </ul>
 </nav>
+
 </div>
-</div>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Scholarship Name</th>
-        <th>Link</th>
-        <th id="show">Description (On/Off)</td></th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for sch in scholars %}
-      
+  </div>
+<br>
+<!-- Search Results Table  -->
+
+  <div class="row text-center" id="tableRow">
+    <table class="table table-bordered">
+      <thead>
         <tr>
-          <td>
-          
-<div class="greetings">{% render_field sch.scholarship_name%}</div>
-</td>
-          <td><a href="{{ sch.scholarship_link }}" target="_blank"
-          >Apply</a
-        ></td>
-        <td>
-        <p class="hldr text-warning">Display</p>
-    <p style="display:none" class="desc">{{ sch.description }}</p>
-        </td></tr>
-      {% empty %}
-        <tr>
-          <td colspan="5">No data</td>
+          <th>Scholarship Name</th>
+          <th>Link</th>
+          <th id="show">Description (On/Off)</td></th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <div class="container">
-  <nav aria-label="Page navigation example">
+      </thead>
+      <tbody>
+      {% for sch in scholars %}
+        
+          <tr>
+            <td>
+            
+  <div class="greetings">{% render_field sch.scholarship_name%}</div>
+  </td>
+            <td><a href="{{ sch.scholarship_link }}" target="_blank"
+            >Apply</a
+          ></td>
+          <td>
+          <p class="hldr text-warning">Display</p>
+      <p style="display:none" class="desc">{{ sch.description }}</p>
+          </td></tr>
+        {% empty %}
+          <tr>
+            <td colspan="5">No data</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- Search Button Fields Bottom  -->
+  <div class="row text-center" id="pageNav">
+      <div class="col">
+
+<nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
    {% if scholars.has_previous %}
-    <li class="page-item"><a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+   {% if 'scholarship_name' not in request.get_full_path %}
+   <li class="page-item"><a class="page-link" href="?page=1">&laquo;First</a></li>
+   <li class="page-item"><a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a></li>
+   {% endif %}
+   {% if 'scholarship_name' in request.get_full_path %}
+    <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page=1">&laquo;First</a></li>
+    <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.previous_page_number }}">Previous</a></li>
+    {% endif %}
     {% endif %}
     <li class="page-item active">
         <a class="page-link" href="#"> Page {{ scholars.number }} of {{ scholars.paginator.num_pages }}.<span class="sr-only">(current)</span></a>
       </li>
       {% if scholars.has_next %}
+      <!-- <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li> -->
+      {% if 'scholarship_name' not in request.get_full_path %}
       <li class="page-item"><a class="page-link" href="?page={{ scholars.next_page_number }}">Next</a></li>
       <li class="page-item"><a class="page-link" href="?page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li>
+   {% endif %}
+   {% if 'scholarship_name' in request.get_full_path %}
+   <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ scholars.paginator.num_pages }}">Last &raquo;</a></li>
+    {% endif %}
       {% endif %}
   </ul>
 </nav>
+
 </div>
+  </div>
 {% endblock content%}

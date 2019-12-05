@@ -19,4 +19,4 @@ class Scholar(models.Model):
         ordering = ["award_amount"]
 
     def __str__(self):
-        return self.scholarship_name
+        return f"{self.scholarship_name}"
