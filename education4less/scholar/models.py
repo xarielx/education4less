@@ -16,7 +16,7 @@ class Scholar(models.Model):
     requirements = models.TextField(default="empty")
 
     class Meta:
-        ordering = ["award_amount"]
+        ordering = ["id"]
 
     def __str__(self):
         return f"{self.scholarship_name}"
