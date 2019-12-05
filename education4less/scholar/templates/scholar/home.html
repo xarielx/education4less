@@ -34,36 +34,37 @@
 </div>
 </div>
 
-
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Scholarship Name</th>
-      <th scope="col">Award Amount</th>
-      <th scope="col">Link</th>
-      <th scope="col">Description</th>
-      <th id="show">Requirements (On/Off)</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for user in scholars %}
-    <tr>
-      <td>{{ user.id }}</td>
-      <td>{{ user.scholarship_name }}</td>
-      <td>{{ user.award_amount }}</td>
-      <td>
-        <a href="{{ user.scholarship_link }}" target="_blank">{{ user.scholarship_name }}</a>
-      </td>
-      <td>{{ user.description }}</td>
-      <td>
-        <p class="hldr text-warning">Display</p>
-        <p style="display:none" class="desc">{{ user.requirements }}</p>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Scholarship Name</th>
+        <th scope="col">Award Amount</th>
+        <th scope="col">Link</th>
+        <th scope="col">Description</th>
+        <th id="show">Requirements (On/Off)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in scholars %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.scholarship_name }}</td>
+        <td>{{ user.award_amount }}</td>
+        <td>
+          <a href="{{ user.scholarship_link }}" target="_blank">{{ user.scholarship_name }}</a>
+        </td>
+        <td>{{ user.description }}</td>
+        <td>
+          <p class="hldr text-warning">Display</p>
+          <p style="display:none" class="desc">{{ user.requirements }}</p>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 <!--  <tr>
     <th scope="row">1</th>
       <td>Mark</td>
