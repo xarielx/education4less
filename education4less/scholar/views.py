@@ -54,25 +54,6 @@ def search(request):
     user_filter = ScholarFilter(request.GET, queryset=filtered_qs)
     paginator = Paginator(user_filter.qs, 5)
 
-    ctx = {}
-    url_parameter = request.GET.get("q")
-
-    if url_parameter:
-        artists = Scholar.objects.filter(
-            scholarship_name__icontains=url_parameter)
-    else:
-        artists = Scholar.objects.all()
-
-    if request.is_ajax():
-        html = render_to_string(
-            template_name="artists-results-partial.html",
-            context={"artists": artists}
-        )
-
-        data_dict = {"html_from_view": html}
-
-        return JsonResponse(data=data_dict, safe=False)
-
     page = request.GET.get('page')
     try:
         scholars = paginator.page(page)
@@ -84,4 +65,4 @@ def search(request):
     return render(
         request,
         'scholar/user_search.html',
-        {'filter': user_filter, 'scholars': scholars, "artists": artists})
+        {'filter': user_filter, 'scholars': scholars})

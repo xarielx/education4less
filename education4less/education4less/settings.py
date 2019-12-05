@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'scholarships.apps.ScholarshipsConfig',
     'scholar.apps.ScholarConfig',
     'users.apps.UsersConfig',
+    'pillow',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
