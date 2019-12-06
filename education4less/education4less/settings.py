@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = 'u9jj5mebhramya25pla4rdyx2p=j_wh0)@9lu*t**ybh)nc*3('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -33,8 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'scholarships.apps.ScholarshipsConfig',
     'scholar.apps.ScholarConfig',
-    'users.apps.UsersConfig',
-
+    'users.apps.UsersConfig',   
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_filters',
     'widget_tweaks',
     'pagination_bootstrap',
+    
 ]
 
 MIDDLEWARE = [
@@ -72,8 +73,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.template.context_processors.i18n",
-                "django.template.context_processors.media",
             ],
         },
 
