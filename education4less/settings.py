@@ -22,10 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u9jj5mebhramya25pla4rdyx2p=j_wh0)@9lu*t**ybh)nc*3('
+# SECRET_KEY = 'u9jj5mebhramya25pla4rdyx2p=j_wh0)@9lu*t**ybh)nc*3('
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['education4less.herokuapp.com',  '127.0.0.1']
 
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'education4less.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
