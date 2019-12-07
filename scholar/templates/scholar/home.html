@@ -1,0 +1,124 @@
+{% extends "scholar/base.html" %}{% block content %}
+
+<div class="row">
+  <div class="col">
+    <p>
+      <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button"
+        aria-expanded="false" aria-controls="multiCollapseExample1">All Scholarships!</a>
+      <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#multiCollapseExample2"
+        aria-expanded="false" aria-controls="multiCollapseExample2">How to search?</button>
+      <button class="btn btn-success" type="button" data-toggle="collapse" data-target=".multi-collapse"
+        aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Quick Info</button>
+    </p>
+    <div class="row">
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <div class="card card-body">
+            This is a list of all of our scholaships.
+            Click on Requirements Column to display information. We currently have {{total_scholarships}} scholarships
+            total.
+          </div>
+          <br>
+        </div>
+      </div>
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+          <div class="card card-body">
+            Click on search and enter any filter to find the perfect scholarship for you!
+            Our search engine is still under construction, so better filters are coming.
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Scholarship Name</th>
+        <th scope="col">Award Amount</th>
+        <th scope="col">Link</th>
+        <th scope="col">Description</th>
+        <th id="show">Requirements (On/Off)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in scholars %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.scholarship_name }}</td>
+        <td>{{ user.award_amount }}</td>
+        <td>
+          <a href="{{ user.scholarship_link }}" target="_blank">{{ user.scholarship_name }}</a>
+        </td>
+        <td>{{ user.description }}</td>
+        <td>
+          <p class="hldr text-warning">Display</p>
+          <p style="display:none" class="desc">{{ user.requirements }}</p>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<!--  <tr>
+    <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Otto</td>
+      <td>Otto</td>
+    </tr> -->
+</tbody>
+</table>
+
+
+<!-- 
+<----- -->
+<!-- <div class="container">
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Scholarship Name</th>
+          <th>Award Amount</th>
+          <th>Link</th>
+          <th>Description</th>
+          <th id="show">Requirements (On/Off)</th>
+        </tr>
+      </thead> -->
+
+
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    {% if scholars.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ scholars.previous_page_number }}">Previous</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="?page=1">&laquo; first</a>
+    </li>
+    {% endif %}
+    <li class="page-item active">
+      <a class="page-link" href="#">
+        Page {{ scholars.number }} of {{ scholars.paginator.num_pages }}.<span class="sr-only">(current)</span></a>
+    </li>
+    {% if scholars.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ scholars.next_page_number }}">Next</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ scholars.paginator.num_pages }}">Last &raquo;</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+</div>
+<br>
+{% endblock content%}
