@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['education4less.herokuapp.com',  '127.0.0.1']
+ALLOWED_HOSTS = ['education4less.herokuapp.com',  '127.0.0.1', '192.168.0.240']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'bootstrap4',
     'crispy_forms',
     'django_filters',
